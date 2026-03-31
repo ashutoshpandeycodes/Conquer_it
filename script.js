@@ -10,7 +10,7 @@ document.getElementById('generate-btn').addEventListener('click', async () => {
         return;
     }
 
-    // 1. Disable the button immediately to prevent double-clicks
+   
     generateBtn.disabled = true;
     generateBtn.innerText = "FORGING QUESTS...";
 
@@ -20,7 +20,7 @@ document.getElementById('generate-btn').addEventListener('click', async () => {
     loadingDiv.classList.remove('hidden');
 
     try {
-        const response = await fetch('http://localhost:5000/generate-quest', {
+        const response = await fetch('/generate-quest', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ quest: questText })
@@ -62,7 +62,7 @@ document.getElementById('generate-btn').addEventListener('click', async () => {
         loadingDiv.classList.add('hidden');
         alert(error.message || "Could not connect to the Quest Master.");
     } finally {
-        // 4. Re-enable the button after a 5-second cooldown
+        // Re-enable the button after a 5-second cooldown
         setTimeout(() => {
             generateBtn.disabled = false;
             generateBtn.innerText = "GENERATE QUESTS";
