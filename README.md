@@ -40,9 +40,12 @@ This protects the server from quota exhaustion and ensures stable uptime.
 • Frontend: HTML5, CSS3, and Vanilla JavaScript. I chose pure JavaScript for DOM 
 manipulation and asynchronous state handling to keep the application lightweight and 
 fast. 
+
 • Backend: Python 3, Flask, and Flask-CORS. Serves as the robust communication 
-bridge. 
-• AI Engine: Google Generative AI SDK (Gemini 2.5 Flash). 
+bridge.
+
+• AI Engine: Google Generative AI SDK (Gemini 2.5 Flash).
+
 • Infrastructure: Gunicorn (Web Server Gateway Interface) and Render for cloud 
 hosting.
 
@@ -53,15 +56,22 @@ follow these steps. You will need Python installed on your machine and a free AP
 from Google 
 AI Studio. 
 Step 1: Clone the Repository 
+
 git clone https://github.com/your-username/conquer-it.gitcd conquer-it 
+
 Step 2: Install Dependencies 
+
 pip install -r requirements.txt 
+
 Step 3: Configure the API Key 
+
 Open the app.py file in your code editor. Locate the environment variable fetch and 
 replace it with your actual API key for local testing. Remember to revert this change 
 before committing your code to a public repository. 
 api_key = "YOUR_ACTUAL_API_KEY_HERE" 
+
 Step 4: Boot the Server 
+
 Run python app.py 
 Once the terminal confirms the server is running on localhost, open your web browser 
 to the provided address to interact with the application.
