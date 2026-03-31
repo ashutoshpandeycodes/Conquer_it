@@ -1,25 +1,28 @@
-from flask import Flask, request, jsonify
+import os
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import google.generativeai as genai
 import json
-# Import the limiter
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
-app = Flask(__name__)
-CORS(app)
+app = Flask(__name__, static_folder='.', static_url_path='')
+CORS(app) 
 
-# Set up the Limiter to track users by their IP address
 limiter = Limiter(
     get_remote_address,
     app=app,
-    default_limits=["100 per day", "1 per minute"],
+    default_limits=["25 per day", "1 per minute"],
     storage_uri="memory://"
 )
 
-genai.configure(api_key="AIzaSyCnXgWEpV8U2OcEok0xZ_4V_r0YXL37AW8")
-model = genai.GenerativeModel('gemini-2.5-flash')
+api_key = os.environ.get("GEMINI_API_KEY")
+genai.configure(api_key=api_key)
+model = genai.GenerativeModel('gemini-2.5-flash') 
 
+@app.route('/')
+def serve_index():
+    return send_from_directory('.', 'index.html')
 
 @app.route('/generate-quest', methods=['POST'])
 @limiter.limit("1 per minute")  # Max 1 requests per minute per user
